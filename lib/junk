@@ -1,0 +1,73 @@
+import 'package:african_luxuries/constants.dart';
+import 'package:african_luxuries/screens/home/widgets/Header.dart';
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatelessWidget {
+  final int propertiesTotal = 1;
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // backgroundColor: ourGrey3,
+      backgroundColor: Colors.amber,
+      body: ListView(
+        children: [
+          Container(
+
+            color: white,
+          ),
+          Header(),
+          Padding(
+            padding: EdgeInsets.all(ourPadding),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  displayTotal(propertiesTotal),
+                  style: Theme.of(context).textTheme.subtitle1,
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(height: 23),
+                Container(
+                  margin: EdgeInsets.only(bottom: 23),
+                  width: 382,
+                  height: 298,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: ourBoxShadow,
+                        offset: Offset(0, 1),
+                        blurRadius: 15,
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 23),
+                  width: 382,
+                  height: 298,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: ourBoxShadow,
+                        offset: Offset(0, 1),
+                        blurRadius: 15,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String displayTotal(int total) {
+    return total == 1 ? "$total property found" : "$total properties found";
+  }
+}
