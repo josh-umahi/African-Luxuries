@@ -4,7 +4,7 @@ import 'package:african_luxuries/screens/home/widgets/Header.dart';
 import 'package:african_luxuries/screens/home/widgets/ItemCards.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   final List<String> listOfCountries;
   final List<House> listOfHouses;
   final int housesTotal;
@@ -12,7 +12,20 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({this.listOfCountries, this.listOfHouses, this.housesTotal});
 
   @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String targetCountry;
+  List<House> listOfHouses;
+  int housesTotal;
+
+  @override
   Widget build(BuildContext context) {
+    targetCountry = "All";
+    listOfHouses = widget.listOfHouses;
+    housesTotal = widget.housesTotal;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
@@ -21,7 +34,7 @@ class HomeScreen extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Header(countryFilterOptions: listOfCountries),
+              Header(countryFilterOptions: widget.listOfCountries, targetCountry: targetCountry,),
               Padding(
                 padding: EdgeInsets.all(ourPadding),
                 child: Column(
@@ -33,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                       textAlign: TextAlign.left,
                     ),
                     SizedBox(height: 23),
-                    ItemCards(listOfHouses),
+                    ItemCards(filterByCountry(luxuryList, targetCountry)),
                   ],
                 ),
               ),
@@ -42,6 +55,17 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void filterByCountry(List<House> luxuryList, String targetCountry) {
+    if (targetCountry == "All") {
+      listOfHouses = new List.from(luxuryList);
+      return;
+    }
+    setState(() {
+      listOfHouses =
+          luxuryList.where((luxuryItem) => luxuryItem.country == targetCountry).toList();
+    });
   }
 
   String displayTotal(int total) {
