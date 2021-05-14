@@ -1,7 +1,7 @@
 import 'package:african_luxuries/models/classes/Luxury.dart';
 import 'package:flutter/material.dart';
 
-class House extends Luxury {
+class Car extends Luxury {
   final String title;
   final String state;
   final String country;
@@ -11,12 +11,12 @@ class House extends Luxury {
   final double ratingOutOf5;
   final int reviewsTotal;
 
-  House({
+  Car({
     @required this.title,
     @required this.state,
     @required this.country,
     @required this.costPrice,
-    this.rentingSystem = "per night",
+    this.rentingSystem = "per day",
     @required this.images,
     @required this.ratingOutOf5,
     @required this.reviewsTotal,

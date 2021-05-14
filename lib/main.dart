@@ -37,8 +37,8 @@ class MyApp extends StatelessWidget {
       ),
       home: HomeScreen(
         listOfCountries: listOfCountries,
-        listOfHouses: listOfHouses,
-        housesTotal: listOfHouses.length,
+        listOfLuxuries: listOfLuxuries,
+        luxuriesTotal: listOfLuxuries.length,
       ),
     );
   }

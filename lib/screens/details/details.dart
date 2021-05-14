@@ -1,12 +1,13 @@
 import 'package:african_luxuries/constants.dart';
-import 'package:african_luxuries/models/classes/House.dart';
+import 'package:african_luxuries/models/classes/Luxury.dart';
+import 'package:african_luxuries/screens/booked/booked.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class Details extends StatefulWidget {
-  final House house;
+  final Luxury luxury;
 
-  Details({this.house});
+  Details({this.luxury});
 
   @override
   _DetailsState createState() => _DetailsState();
@@ -28,11 +29,16 @@ class _DetailsState extends State<Details> {
 
   @override
   Widget build(BuildContext context) {
-    final House house = widget.house;
+    final Luxury luxury = widget.luxury;
 
     return Scaffold(
       bottomNavigationBar: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Booked()),
+          );
+        },
         child: Container(
           alignment: Alignment.center,
           color: ourPrimaryColor,
@@ -79,7 +85,7 @@ class _DetailsState extends State<Details> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      house.title,
+                      luxury.title,
                       style: Theme.of(context)
                           .textTheme
                           .headline4
@@ -88,7 +94,7 @@ class _DetailsState extends State<Details> {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      house.location,
+                      luxury.location,
                       style: Theme.of(context)
                           .textTheme
                           .headline2
@@ -97,12 +103,12 @@ class _DetailsState extends State<Details> {
                     Row(
                       children: [
                         Row(
-                          children: house.buildRatingsIcon(
+                          children: luxury.buildRatingsIcon(
                             colorOfStars: Colors.black,
                           ),
                         ),
                         Text(
-                          house.displayReviewsTotal,
+                          luxury.displayReviewsTotal,
                           style: Theme.of(context)
                               .textTheme
                               .headline2
@@ -115,7 +121,7 @@ class _DetailsState extends State<Details> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          house.displayCostPerNight,
+                          luxury.displayCostPrice,
                           style: Theme.of(context).textTheme.headline1.copyWith(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w600,
@@ -128,7 +134,11 @@ class _DetailsState extends State<Details> {
               ],
             ),
           ),
-          ...house.images.map((image) {
+          Hero(
+            tag: luxury.images[0],
+            child: Image.asset(luxury.images[0]),
+          ),
+          ...luxury.images.sublist(1).map((image) {
             return Image.asset(image);
           }).toList(),
         ],

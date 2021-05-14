@@ -1,24 +1,24 @@
-import 'package:african_luxuries/models/classes/House.dart';
+import 'package:african_luxuries/models/classes/Luxury.dart';
 import 'package:african_luxuries/screens/details/details.dart';
 import 'package:flutter/material.dart';
 import 'package:african_luxuries/constants.dart';
 
 class ItemCards extends StatelessWidget {
-  final List<House> listOfHouses;
+  final List<Luxury> listOfLuxuries;
 
-  ItemCards(this.listOfHouses);
+  ItemCards(this.listOfLuxuries);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children:
-          listOfHouses.map((house) => buildItemCard(context, house)).toList(),
+          listOfLuxuries.map((luxury) => buildItemCard(context, luxury)).toList(),
     );
   }
 
-  GestureDetector buildItemCard(BuildContext context, House house) {
+  GestureDetector buildItemCard(BuildContext context, Luxury luxury) {
     return GestureDetector(
-      onTap: () => _goToDetailsScreen(context, house),
+      onTap: () => _goToDetailsScreen(context, luxury),
       child: Container(
         margin: EdgeInsets.only(bottom: 23),
         width: 382,
@@ -40,11 +40,14 @@ class ItemCards extends StatelessWidget {
               borderRadius: BorderRadius.vertical(
                 top: Radius.circular(20),
               ),
-              child: Image.asset(
-                house.images[0],
-                height: 180,
-                width: double.infinity,
-                fit: BoxFit.cover,
+              child: Hero(
+                tag: luxury.images[0],
+                child: Image.asset(
+                  luxury.images[0],
+                  height: 180,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Padding(
@@ -56,7 +59,7 @@ class ItemCards extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    house.title,
+                    luxury.title,
                     style: Theme.of(context).textTheme.headline1.copyWith(
                           color: Colors.black,
                           fontWeight: FontWeight.w600,
@@ -65,18 +68,18 @@ class ItemCards extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    house.location,
+                    luxury.location,
                     style: Theme.of(context).textTheme.headline2,
                   ),
                   Row(
                     children: [
                       Row(
-                        children: house.buildRatingsIcon(
+                        children: luxury.buildRatingsIcon(
                           colorOfStars: ourPrimaryColor,
                         ),
                       ),
                       Text(
-                        house.displayReviewsTotal,
+                        luxury.displayReviewsTotal,
                         style: Theme.of(context).textTheme.headline2,
                       ),
                     ],
@@ -86,7 +89,7 @@ class ItemCards extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        house.displayCostPerNight,
+                        luxury.displayCostPrice,
                         style: Theme.of(context).textTheme.headline1.copyWith(
                               color: Colors.black,
                               fontWeight: FontWeight.w600,
@@ -103,10 +106,10 @@ class ItemCards extends StatelessWidget {
     );
   }
 
-  void _goToDetailsScreen(BuildContext context, House house) {
+  void _goToDetailsScreen(BuildContext context, Luxury luxury) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => Details(house: house)),
+      MaterialPageRoute(builder: (context) => Details(luxury: luxury)),
     );
   }
 }

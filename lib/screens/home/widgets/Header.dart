@@ -4,8 +4,9 @@ import '../../../constants.dart';
 
 class Header extends StatefulWidget {
   final List<String> countryFilterOptions;
+  final Function({String newTargetCountry}) onClickFilter;
 
-  Header({this.countryFilterOptions});
+  Header({this.countryFilterOptions, this.onClickFilter});
 
   @override
   _HeaderState createState() => _HeaderState();
@@ -15,8 +16,6 @@ class _HeaderState extends State<Header> {
   int _selectedCountryFilter = 0;
 
   Widget build(BuildContext context) {
-    List<String> countryFilterOptions = widget.countryFilterOptions;
-
     return Container(
       width: double.infinity,
       padding: EdgeInsets.only(left: ourPadding, top: 95),
@@ -42,8 +41,8 @@ class _HeaderState extends State<Header> {
               scrollDirection: Axis.horizontal,
               itemCount: widget.countryFilterOptions.length,
               itemBuilder: (BuildContext context, int index) =>
-                  _buildCountryFilterScroll(
-                      context, index, countryFilterOptions[index]),
+                  _buildCountryFilter(
+                      context, index, widget.countryFilterOptions[index]),
             ),
           ),
           SizedBox(height: 8),
@@ -52,7 +51,7 @@ class _HeaderState extends State<Header> {
     );
   }
 
-  Widget _buildCountryFilterScroll(
+  Widget _buildCountryFilter(
     BuildContext context,
     int index,
     String country,
@@ -61,11 +60,12 @@ class _HeaderState extends State<Header> {
       onTap: () {
         setState(() {
           _selectedCountryFilter = index;
+          widget.onClickFilter(newTargetCountry: widget.countryFilterOptions[index]);
         });
       },
       child: Container(
         alignment: Alignment.center,
-        margin: EdgeInsets.fromLTRB(0, 10, 10, 10),
+        margin: EdgeInsets.fromLTRB(0, 10, 16, 10),
         padding: EdgeInsets.symmetric(horizontal: 28),
         decoration: BoxDecoration(
           color:
