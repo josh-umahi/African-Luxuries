@@ -1,8 +1,9 @@
-import 'package:african_luxuries/constants.dart';
-import 'package:african_luxuries/models/classes/Luxury.dart';
-import 'package:african_luxuries/screens/booked/booked.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../constants.dart';
+import '../../models/classes/Luxury.dart';
+import '../../screens/booked/booked.dart';
 
 class Details extends StatefulWidget {
   final Luxury luxury;

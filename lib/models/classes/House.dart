@@ -1,5 +1,6 @@
-import 'package:african_luxuries/models/classes/Luxury.dart';
 import 'package:flutter/material.dart';
+
+import './Luxury.dart';
 
 class House extends Luxury {
   final String title;

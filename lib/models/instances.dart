@@ -1,6 +1,6 @@
-import 'package:african_luxuries/models/classes/Car.dart';
-import 'package:african_luxuries/models/classes/House.dart';
-import 'package:african_luxuries/models/classes/Luxury.dart';
+import './classes/Car.dart';
+import './classes/House.dart';
+import './classes/Luxury.dart';
 
 List<Luxury> listOfLuxuries = [
   House(
@@ -82,7 +82,7 @@ List<Luxury> listOfLuxuries = [
       "assets/images/sato_1.jpg",
       "assets/images/sato_2.jpg",
     ],
-    ratingOutOf5: 2.7,
+    ratingOutOf5: 3.7,
     reviewsTotal: 13,
   ),
 ];

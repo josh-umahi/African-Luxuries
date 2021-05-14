@@ -1,7 +1,7 @@
-import 'package:african_luxuries/constants.dart';
-import 'package:african_luxuries/models/instances.dart';
 import 'package:flutter/material.dart';
 
+import './constants.dart';
+import './models/instances.dart';
 import 'screens/home/home.dart';
 
 void main() {

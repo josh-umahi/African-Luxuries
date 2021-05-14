@@ -1,8 +1,9 @@
-import 'package:african_luxuries/constants.dart';
-import 'package:african_luxuries/models/classes/Luxury.dart';
-import 'package:african_luxuries/screens/home/widgets/Header.dart';
-import 'package:african_luxuries/screens/home/widgets/ItemCards.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants.dart';
+import '../../models/classes/Luxury.dart';
+import '../../screens/home/widgets/Header.dart';
+import '../../screens/home/widgets/ItemCards.dart';
 
 class HomeScreen extends StatefulWidget {
   final List<String> listOfCountries;

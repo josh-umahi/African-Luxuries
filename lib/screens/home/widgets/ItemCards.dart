@@ -1,7 +1,8 @@
-import 'package:african_luxuries/models/classes/Luxury.dart';
-import 'package:african_luxuries/screens/details/details.dart';
 import 'package:flutter/material.dart';
-import 'package:african_luxuries/constants.dart';
+
+import '../../../models/classes/Luxury.dart';
+import '../../../screens/details/details.dart';
+import '../../../constants.dart';
 
 class ItemCards extends StatelessWidget {
   final List<Luxury> listOfLuxuries;
